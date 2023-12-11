@@ -1,0 +1,38 @@
+pipeline{
+    
+    agent any
+    
+    stages{
+        
+        stage('Build'){
+            steps{
+                echo 'Build Stage'
+            }
+        }
+        stage('Integration Testing'){
+            parallel{
+                stage('Sanity Suit'){
+                    steps{
+                        echo 'Ruuning Sanity Suit'
+                    }
+                }
+                stage('Regression Suit'){
+                    steps{
+                        echo 'Ruuning Regression Suit'
+                    }
+                }
+                stage('Performance Suit'){
+                    steps{
+                        echo 'Ruuning Performance Suit'
+                    }
+                }
+            }
+        }
+        stage('Deploy'){
+            steps{
+                echo 'Deploy Stage'
+            }
+        }
+    }
+    
+}
